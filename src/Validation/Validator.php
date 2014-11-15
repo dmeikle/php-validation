@@ -46,8 +46,18 @@ class Validator {
                 $retval[$field] = $result;
             }
         }       
+        if(count($retval) > 0) {
+            $localConfig = $this->config->getNode($key);
+            if(array_key_exists('failkey', $localConfig)) {
+                $retval['FAIL_KEY'] = $localConfig['failkey'];
+            } else {
+                $this->logger->addDebug('form validation failed - no failkey element specified in ' . __YML_KEY . '.yml');
+            }
+            
+            return $retval;
+        }
         
-        return $retval;
+        return true;
     }
     
     /**
