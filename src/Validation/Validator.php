@@ -76,7 +76,7 @@ class Validator {
           
           return true;
        }
-      
+    
        //now iterate each validator and kick out if we fail
        foreach($fieldConfig as $item) {
            $validatorName = $item['class'];
@@ -99,7 +99,7 @@ class Validator {
     
     private function findElementInArray($configList, $key) {
         
-        foreach ($configList as $item) {
+        foreach ($configList['fields'] as $item) {
             if(array_key_exists($key, $item)) {
                 return $item[$key];
             }
