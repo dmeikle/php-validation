@@ -25,13 +25,13 @@ class ValidatorTest extends BaseTest{
         $this->assertTrue(array_key_exists('firstname',$result));
         $this->assertEquals('VALIDATION_REQUIRED_FIELD', $result['firstname']);
     }
-    
+ 
     private function getPostedParams() {
         return array(
             'blal' => 'humbug',
             'firstname' => '',
             'lastname' => 'meikle',
-            'email' => 'david@quantumunit.com',
+            'email' => 'davidquantumunit.com',
             'password' => 'thIs1s@p@$$w0rd'
         );
     }

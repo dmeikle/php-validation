@@ -44,6 +44,7 @@ class Validator {
             $result = $this->validateField($key, $field, $value);
             if($result !== true) {               
                 $retval[$field] = $result;
+                $retval[$field . '_value'] = $value;
             }
         }       
         if(count($retval) > 0) {
@@ -53,7 +54,7 @@ class Validator {
             } else {
                 $this->logger->addDebug('form validation failed - no failkey element specified in ' . __YML_KEY . '.yml');
             }
-            
+            print_r($retval);
             return $retval;
         }
         
