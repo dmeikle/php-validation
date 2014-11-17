@@ -54,7 +54,7 @@ class Validator {
             } else {
                 $this->logger->addDebug('form validation failed - no failkey element specified in ' . __YML_KEY . '.yml');
             }
-            print_r($retval);
+           
             return $retval;
         }
         
