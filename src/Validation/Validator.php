@@ -1,9 +1,9 @@
 <?php
 
 namespace Validation;
-
-ini_set('display_errors', 1); 
-error_reporting(E_ALL);
+//
+//ini_set('display_errors', 1); 
+//error_reporting(E_ALL);
 
 use Monolog\Logger;
 use Validation\Factory\ValidatorCommandFactory;
