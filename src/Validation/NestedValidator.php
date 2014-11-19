@@ -19,7 +19,12 @@ class NestedValidator extends Validator{
         $retval = array();
         
         foreach($postedParams as $key => $value) {
-            $retval[$key] = parent::validateRequest($value, $keepNestedResult);
+            if(is_array($value)) {
+                $retval[$key] = parent::validateRequest($value, $keepNestedResult);
+            } else {
+                $retval[$key] = parent::validateRequest(array($key => $value), $keepNestedResult);
+            }
+            
         }
         
         return $retval;

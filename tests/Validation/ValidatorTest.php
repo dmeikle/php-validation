@@ -53,7 +53,8 @@ class ValidatorTest extends BaseTest{
                 'postalCode' => '123',
                 'password' => '123',
                 'passwordConfirm' => '123'
-            )
+            ),
+            'token' => '$1$kbovS4bT$Jod0dIiHq7M5EaAOPTgHX1'
         );
     }
     
@@ -67,8 +68,8 @@ class ValidatorTest extends BaseTest{
         $result = $validator->validateRequest($this->getPostedNestedParams(), true);
         print_r($result);
         $this->assertTrue(is_array($result));
-        $this->assertTrue(array_key_exists('firstname',$result));
-        $this->assertEquals('VALIDATION_REQUIRED_FIELD', $result['firstname']);
+        $this->assertTrue(array_key_exists('firstname',$result['staff']));
+        $this->assertEquals('VALIDATION_INVALID_STRING', $result['staff']['firstname']);
         
     }
 }

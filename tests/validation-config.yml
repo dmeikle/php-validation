@@ -55,3 +55,13 @@ fields:
             params:
                 - maxlength: 50 
 
+    - token:
+        - 
+            class: Required     
+            failkey: VALIDATION_REQUIRED_FIELD
+        -
+            class: String
+            failkey: VALIDATION_INVALID_ADDRESS
+            params:
+                - maxlength: 50 
+        
