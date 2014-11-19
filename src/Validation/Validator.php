@@ -2,8 +2,7 @@
 
 namespace Validation;
 
-ini_set('display_errors', 1); 
-error_reporting(E_ALL);
+
 
 use Monolog\Logger;
 use Validation\Factory\ValidatorCommandFactory;
@@ -84,7 +83,7 @@ class Validator {
        
        //this is all the fields on this page configuration 
        $localConfig = $this->config->getNode('fields');
-     print_r($fieldConfig);
+     
         if(is_null($fieldConfig)) {
             //now to get the config for just this field
             $fieldConfig = $this->findElementInArray($localConfig, $field);
