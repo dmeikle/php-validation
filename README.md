@@ -3,10 +3,11 @@ php-validation
 
 my first crack at learning PHP back in 2007. Rewritten in 2014 to use YAML instead of XML.
 Changed from Chain of Command pattern to use Flyweight Pattern instead.
-<blockquote>
 
-usage:
---------start-----
+
+Usage:
+-----
+
 $loader = new YamlConfiguration();        
 $loader->loadConfig(__SITE_PATH . '/validation-config.yml');
 
@@ -15,8 +16,9 @@ $key = 'new_user_signup';
 $validator = new Validator($loader, $this->getLogger()); //Monolog\Logger
 
 $result = $validator->validateRequest($key, $this->getPostedParams());
-----------end ------
 
+Notes:
+------
 if $result is an array holding values, it will be an associative array
 where the fieldname is the index key and the LANG_STRING (for multi-locale
 support) is the value of that index.
