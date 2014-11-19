@@ -2,7 +2,7 @@ php-validation
 ==============
 
 my first crack at learning PHP back in 2007. Rewritten in 2014 to use YAML instead of XML.
-Changed from Chain of Command pattern to use Flyweight Pattern instead.
+Changed from Chain of Command pattern to use basic Load-On-Demand instead.
 
 
 Usage:
