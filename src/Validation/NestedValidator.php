@@ -26,7 +26,9 @@ class NestedValidator extends Validator{
             }
             
         }
-        
+        if(!is_null($this->failkey)) {
+            $retval['FAIL_KEY'] = $this->failkey;
+        }
         return $retval;
     }
 }

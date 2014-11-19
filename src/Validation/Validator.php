@@ -22,6 +22,8 @@ class Validator {
     
     protected $factory = null;
     
+    protected $failkey = null;
+    
     
     public function __construct(ConfigLoaderInterface $config, Logger $logger) {
         $this->config = $config;
@@ -63,9 +65,9 @@ class Validator {
         }       
         if(count($retval) > 0) {
             
-            $failkey = $this->config->getNode('failkey');
-           
-            $retval['FAIL_KEY'] = $failkey;
+            $this->failkey = $this->config->getNode('failkey');
+            
+            $retval['FAIL_KEY'] = $this->failkey;
             
             return $retval;
         }
