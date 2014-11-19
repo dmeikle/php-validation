@@ -26,7 +26,9 @@ support) is the value of that index.
 sample YAML config (validation-config.yml):
 
 failkey: some_other_yml_key
+
 fields:
+
     - firstname:
         - 
             class: Required      
