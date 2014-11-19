@@ -38,14 +38,14 @@ class Validator {
      */
     public function validateRequest(array $postedParams, $keepNestedResult = false) {        
         $retval = array();
-       print_r($postedParams);
+      
         foreach($postedParams as $field => $value) {
-            echo "testing $field\r\n";
+            
             $parentKey = $field;
             if(is_array($value)) {
                 //override the current key/value pair with the nested value
                $field = key($value);
-                echo "overriding... setting key to $field\r\n";
+               
                $value = current($value);
             }
             $result = $this->validateField($field, $value);
@@ -111,18 +111,6 @@ class Validator {
        }
        
        return true;
-    }
-    
-    private function checkElementExists(array $array, $value) {
-        foreach($array as $key => $row) {
-            echo "check $value\r\n";
-            print_r($row);
-            
-            if($value == $key) {
-                return true;
-            }
-            return false;
-        }
     }
     
     private function findElementInArray($configList, $key) {
