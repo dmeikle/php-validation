@@ -17,13 +17,15 @@ class ValidatorTest extends BaseTest{
         $loader = new YamlConfiguration();        
         $loader->loadConfig(__SITE_PATH . '/validation-config.yml');
         
-        $key = 'testURI1';
+        
         $validator = new Validator($loader, $this->getLogger());
         
-        $result = $validator->validateRequest($key, $this->getPostedParams());
+        $result = $validator->validateRequest($this->getPostedParams(), true);
+        
         $this->assertTrue(is_array($result));
         $this->assertTrue(array_key_exists('firstname',$result));
         $this->assertEquals('VALIDATION_REQUIRED_FIELD', $result['firstname']);
+        print_r($result);
     }
  
     private function getPostedParams() {
@@ -31,8 +33,11 @@ class ValidatorTest extends BaseTest{
             'blal' => 'humbug',
             'firstname' => '',
             'lastname' => 'meikle',
-            'email' => 'davidquantumunit.com',
-            'password' => 'thIs1s@p@$$w0rd'
+           // 'email' => 'davidquantumunit.com',
+            'password' => 'thIs1s@p@$$w0rd',
+            'staff' => array (
+                'email' => 'davemtest.com' 
+            )
         );
     }
 }

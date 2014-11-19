@@ -36,25 +36,35 @@ class Validator {
      * @param string $key   - the associative array key for the configuration
      * @param array $postedParams   - the posted Request form
      */
-    public function validateRequest($key, array $postedParams) {        
+    public function validateRequest(array $postedParams, $keepNestedResult = false) {        
         $retval = array();
-        
+       
         foreach($postedParams as $field => $value) {
-            
-            $result = $this->validateField($key, $field, $value);
-            if($result !== true) {               
-                $retval[$field] = $result;
-                $retval[$field . '_value'] = $value;
+            $parentKey = $field;
+            if(is_array($value)) {
+                //override the current key/value pair with the nested value
+               $field = key($value);
+               $value = current($value);
+            }
+            $result = $this->validateField($field, $value);
+            if($result !== true) { 
+                if(!$keepNestedResult || $parentKey == $field) {
+                    //it wasn't changed so return as-is
+                    $retval[$field] = $result;
+                    $retval[$field . '_value'] = $value;
+                } else {
+                    $retval[$parentKey][$field]  = $result;
+                    $retval[$parentKey][$field . '_value']  = $value;
+                }
+                
             }
         }       
         if(count($retval) > 0) {
-            $localConfig = $this->config->getNode($key);
-            if(array_key_exists('failkey', $localConfig)) {
-                $retval['FAIL_KEY'] = $localConfig['failkey'];
-            } else {
-                $this->logger->addDebug('form validation failed - no failkey element specified in ' . __YML_KEY . '.yml');
-            }
+            
+            $failkey = $this->config->getNode('failkey');
            
+            $retval['FAIL_KEY'] = $failkey;
+            
             return $retval;
         }
         
@@ -66,20 +76,23 @@ class Validator {
      * 
      * @param type $key
      */
-    private function validateField($key, $field, $value) {
-       //this is all the fields on this page configuration 
-       $localConfig = $this->config->getNode($key);
-     
-       //now to get the config for just this field
-       $fieldConfig = $this->findElementInArray($localConfig, $field);
+    private function validateField( $field, $value, $fieldConfig = null, $nested = false) {
        
-       if(!$fieldConfig){
-          
-          return true;
-       }
-    
+       //this is all the fields on this page configuration 
+       $localConfig = $this->config->getNode('fields');
+     print_r($fieldConfig);
+        if(is_null($fieldConfig)) {
+            //now to get the config for just this field
+            $fieldConfig = $this->findElementInArray($localConfig, $field);
+        }
+        if(!$fieldConfig){
+
+           return true;
+        }
+       
        //now iterate each validator and kick out if we fail
        foreach($fieldConfig as $item) {
+          
            $validatorName = $item['class'];
            $params = array();
            
@@ -98,9 +111,21 @@ class Validator {
        return true;
     }
     
+    private function checkElementExists(array $array, $value) {
+        foreach($array as $key => $row) {
+            echo "check $value\r\n";
+            print_r($row);
+            
+            if($value == $key) {
+                return true;
+            }
+            return false;
+        }
+    }
+    
     private function findElementInArray($configList, $key) {
         
-        foreach ($configList['fields'] as $item) {
+        foreach ($configList as $item) {
             if(array_key_exists($key, $item)) {
                 return $item[$key];
             }
