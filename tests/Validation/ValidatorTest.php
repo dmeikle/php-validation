@@ -66,7 +66,7 @@ class ValidatorTest extends BaseTest{
         $validator = new NestedValidator($loader, $this->getLogger());
         
         $result = $validator->validateRequest($this->getPostedNestedParams(), true);
-        print_r($result);
+       
         $this->assertTrue(is_array($result));
         $this->assertTrue(array_key_exists('firstname',$result['staff']));
         $this->assertEquals('VALIDATION_INVALID_STRING', $result['staff']['firstname']);

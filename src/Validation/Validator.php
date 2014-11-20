@@ -6,6 +6,7 @@ namespace Validation;
 
 use Monolog\Logger;
 use Validation\Factory\ValidatorCommandFactory;
+use Validation\Exceptions\ElementNotValidatedException;
 
 
 /**
@@ -49,8 +50,11 @@ class Validator {
                
                $value = current($value);
             }
+            
             $result = $this->validateField($field, $value);
+            
             if($result !== true) { 
+               
                 if(!$keepNestedResult || $parentKey == $field) {
                     //it wasn't changed so return as-is
                     $retval[$field] = $result;
@@ -61,7 +65,8 @@ class Validator {
                 }
                 
             }
-        }       
+        }  
+    
         if(count($retval) > 0) {
             
             $this->failkey = $this->config->getNode('failkey');
@@ -89,8 +94,8 @@ class Validator {
             $fieldConfig = $this->findElementInArray($localConfig, $field);
         }
         if(!$fieldConfig){
-
-           return true;
+            //this element has not been asked to be validate
+            return true;
         }
        
        //now iterate each validator and kick out if we fail
