@@ -22,7 +22,7 @@ class ValidatorTest extends BaseTest{
         $validator = new Validator($loader, $this->getLogger());
         
         $result = $validator->validateRequest($this->getPostedParams(), true);
-       
+      
         $this->assertTrue(is_array($result));
         $this->assertTrue(array_key_exists('firstname',$result));
         $this->assertEquals('VALIDATION_REQUIRED_FIELD', $result['firstname']);        

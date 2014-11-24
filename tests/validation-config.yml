@@ -33,17 +33,6 @@ fields:
             params:
                 - maxlength: 50 
 
-    - password:
-        - 
-            class: Required      
-            failkey: VALIDATION_REQUIRED_FIELD          
-        - 
-            class: Password
-            failkey: VALIDATION_INVALID_PASSWORD
-            params:
-                maxlength: 20
-
-
 
     - address:
         - 

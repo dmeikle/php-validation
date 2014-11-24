@@ -12,7 +12,7 @@ use Validation\Factory\FlyweightValidatorInterface;
  * 
  * @copyright 2007 - 2014
  */
-class AlphaNumbericValidator extends AbstractValidator implements FlyweightValidatorInterface{
+class AlphaNumericValidator extends AbstractValidator implements FlyweightValidatorInterface{
     
     /** Creates a new instance of AlphaNumbericValidator */
     public function __construct() {
