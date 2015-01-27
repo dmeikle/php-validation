@@ -6,17 +6,17 @@ namespace Validation\Validators;
 use Validation\Factory\FlyweightValidatorInterface;
 
 /**
- * AlphaNumbericValidator - receives an alphanumeric and validates only if it holds a value
+ * IntegerValidator - receives an address and validates only if it holds a value
  * 
  * @author	Dave Meikle
  * 
  * @copyright 2007 - 2014
  */
-class AlphaNumericValidator extends AbstractValidator implements FlyweightValidatorInterface{
+class IntegerValidator extends AbstractValidator implements FlyweightValidatorInterface{
     
-    /** Creates a new instance of AlphaNumbericValidator */
+    /** Creates a new instance of EmailValidatorCommand */
     public function __construct() {
-        parent::__construct("^[a-zA-Z0-9]+$^");
+        parent::__construct("^[0-9]$^");
     }
 
 
