@@ -58,16 +58,29 @@ fields:
             
 				
 Possible Validation Classes:
+
 	Address
+	
 	AlphaNumeric - letters and numbers only
+	
 	Alphabet	- letters only
+	
 	BusinessName - letters, numbers, apostrophe, and &()-,.
+	
 	Currency
+	
 	Date
+	
 	Email
+	
 	IPAddress
+	
 	Integer
+	
 	Required
+	
 	String - letters, spaces and apostrophes
+	
 	Telephone
+	
 	URL
