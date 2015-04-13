@@ -29,6 +29,7 @@ failkey: some_other_yml_key
 
 fields:
 
+#uses 2 validation routines in this example, Required then String
     - firstname:
         - 
             class: Required      
@@ -48,3 +49,38 @@ fields:
             failkey: VALIDATION_INVALID_STRING
             params:
                 maxlength: 20
+                
+#email is optional in this sample so no Required validation needed
+    - email
+        -
+            class: Email
+            failkey: VALIDATION_INVALID_EMAIL
+            
+				
+Possible Validation Classes:
+
+	Address
+	
+	AlphaNumeric - letters and numbers only
+	
+	Alphabet	- letters only
+	
+	BusinessName - letters, numbers, apostrophe, and &()-,.
+	
+	Currency
+	
+	Date
+	
+	Email
+	
+	IPAddress
+	
+	Integer
+	
+	Required
+	
+	String - letters, spaces and apostrophes
+	
+	Telephone
+	
+	URL

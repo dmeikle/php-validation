@@ -2,8 +2,6 @@
 
 namespace Validation;
 
-
-
 use Monolog\Logger;
 use Validation\Factory\ValidatorCommandFactory;
 use Validation\Exceptions\ElementNotValidatedException;
