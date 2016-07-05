@@ -18,7 +18,7 @@ namespace Validation\Exceptions;
  */
 class ConfigurationNotLoadedException extends \Exception {
 
-    public function __construct($message, $code, $previous) {
+    public function __construct() {
         parent::__construct('Configuration array not found', 804, $previous);
     }
 
