@@ -1,9 +1,19 @@
 <?php
+/*
+ *  This file is part of the Quantum Unit Solutions development package.
+ *
+ *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
+ *
+ *  For the full copyright and license information, please view the LICENSE
+ *  file that was distributed with this source code.
+ *
+ * @author David Meikle <david@quantumunit.com>
+ */
 
 namespace Validation;
 
 use Monolog\Logger;
-use Validation\Factory\ValidatorCommandFactory;
+use Validation\Factory\ValidatorFactory;
 use Validation\Exceptions\ElementNotValidatedException;
 
 
@@ -26,7 +36,7 @@ class Validator {
     public function __construct(ConfigLoaderInterface $config, Logger $logger) {
         $this->config = $config;
         $this->logger = $logger;
-        $this->factory = new ValidatorCommandFactory();
+        $this->factory = new ValidatorFactory();
     }
     
     /**

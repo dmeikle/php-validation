@@ -4,8 +4,12 @@ namespace tests;
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
+use PHPUnit\Framework\TestCase;
 
-class BaseTest extends \PHPUnit_Framework_TestCase
+/**
+ * @codeCoverageIgnore
+ */
+class BaseTest extends TestCase
 {
     const GET = 'GET';
     
@@ -20,16 +24,14 @@ class BaseTest extends \PHPUnit_Framework_TestCase
         return $logger;
     }
     
-    public function setRequestMethod($method) {
+    protected function setRequestMethod($method) {
         define("__REQUEST_METHOD", $method);
     }
     
-    public function setURI($uri) {
+    protected function setURI($uri) {
         define('__URI', $uri);
         define("__REQUEST_URI", $uri . '/');
     }
     
-    public function testBase() {
-        
-    }
+
 }

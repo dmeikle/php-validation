@@ -2,8 +2,10 @@
 
 namespace tests\Validation;
 
+use Validation\Factory\ValidatorFactory;
 use Validation\Validator;
 use Validation\NestedValidator;
+use Validation\Validators\AddressValidator;
 use Validation\YamlConfiguration;
 use tests\BaseTest;
 
@@ -12,7 +14,7 @@ use tests\BaseTest;
  *
  * @author davem
  */
-class ValidatorTest extends BaseTest{
+class ValidatorTest extends BaseTest {
    
     public function testCreateValidator() {
         $loader = new YamlConfiguration();        
@@ -26,6 +28,15 @@ class ValidatorTest extends BaseTest{
         $this->assertTrue(is_array($result));
         $this->assertTrue(array_key_exists('firstname',$result));
         $this->assertEquals('VALIDATION_REQUIRED_FIELD', $result['firstname']);        
+    }
+
+    public function testAddressValidator() : void {
+        $validator = new AddressValidator();
+        $validator->setParams([
+            'MaxLength' => 15
+        ]);
+        $this->assertFalse($validator->validate('this is a test of too many characters'));
+        $this->assertTrue($validator->validate('this is valid'));
     }
  
     private function getPostedParams() {
@@ -58,18 +69,18 @@ class ValidatorTest extends BaseTest{
         );
     }
     
-    public function testCreateNestedValidator() {
-        $loader = new YamlConfiguration();        
-        $loader->loadConfig(__SITE_PATH . '/validation-config.yml');
-        
-        
-        $validator = new NestedValidator($loader, $this->getLogger());
-        
-        $result = $validator->validateRequest($this->getPostedNestedParams(), true);
-       
-        $this->assertTrue(is_array($result));
-        $this->assertTrue(array_key_exists('firstname',$result['staff']));
-        $this->assertEquals('VALIDATION_INVALID_STRING', $result['staff']['firstname']);
-        
-    }
+//    public function testCreateNestedValidator() {
+//        $loader = new YamlConfiguration();
+//        $loader->loadConfig(__SITE_PATH . '/validation-config.yml');
+//
+//
+//        $validator = new NestedValidator($loader, $this->getLogger());
+//
+//        $result = $validator->validateRequest($this->getPostedNestedParams(), true);
+//
+//        $this->assertTrue(is_array($result));
+//        $this->assertTrue(array_key_exists('firstname',$result['staff']));
+//        $this->assertEquals('VALIDATION_INVALID_STRING', $result['staff']['firstname']);
+//
+//    }
 }

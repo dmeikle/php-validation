@@ -1,0 +1,11 @@
+
+fields:
+  - lastname:
+    -
+      class: Required
+      failkey: VALIDATION_REQUIRED_FIELD
+    -
+      class: String2
+      failkey: VALIDATION_INVALID_STRING
+      params:
+        MaxLength: 20

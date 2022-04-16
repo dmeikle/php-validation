@@ -1,0 +1,11 @@
+
+fields:
+  - address:
+    -
+      class: Required
+      failkey: VALIDATION_REQUIRED_FIELD
+    -
+      class: Address
+      failkey: VALIDATION_INVALID_ADDRESS
+      params:
+        MaxLength: 20

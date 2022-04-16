@@ -1,5 +1,4 @@
 <?php
-
 /*
  *  This file is part of the Quantum Unit Solutions development package.
  *
@@ -7,6 +6,8 @@
  *
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
+ *
+ * @author David Meikle <david@quantumunit.com>
  */
 
 namespace Validation\Validators;
@@ -26,12 +27,11 @@ class FloatValidator extends AbstractValidator implements FlyweightValidatorInte
 
     }
 
-    public function validate($value) {
-        if (filter_var($value, FILTER_VALIDATE_FLOAT)) {
-            return true;
-        } else {
+    public function validate($value) : bool {
+        if(!$this->checkParams($value)) {
             return false;
         }
+        return (filter_var($value, FILTER_VALIDATE_FLOAT));
     }
 
 }

@@ -11,7 +11,7 @@ fields:
             class: String    
             failkey: VALIDATION_INVALID_STRING
             params:
-                maxlength: 20
+                MaxLength: 20
 
     - lastname:
         - 
@@ -21,7 +21,7 @@ fields:
             class: String
             failkey: VALIDATION_INVALID_STRING
             params:
-                maxlength: 20
+                MaxLength: 20
 
     - email:
         - 
@@ -31,7 +31,7 @@ fields:
             class: Email
             failkey: VALIDATION_INVALID_EMAIL
             params:
-                - maxlength: 50 
+                - MaxLength: 50 
 
 
     - address:
@@ -42,6 +42,6 @@ fields:
             class: Address
             failkey: VALIDATION_INVALID_ADDRESS
             params:
-                - maxlength: 50 
+                - MaxLength: 50 
 
         

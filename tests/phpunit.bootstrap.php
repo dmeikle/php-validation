@@ -19,3 +19,4 @@ require_once(__SITE_PATH . '/../vendor/composer/ClassLoader.php');
 
       // to enable searching the include path (eg. for PEAR packages)
       $loader->setUseIncludePath(true);
+echo ( "---------------------- begin PHPUnit tests --------------------------\r\n");
