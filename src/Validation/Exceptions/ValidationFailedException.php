@@ -12,6 +12,8 @@
 
 namespace Validation\Exceptions;
 
+use Validation\Config\Constants;
+
 /**
  * ValidationFailedException
  *
@@ -19,7 +21,7 @@ namespace Validation\Exceptions;
  */
 class ValidationFailedException extends \Exception{
     
-    public function __construct($message = 'Validation Failed', $code = 800, $previous = null) {
-        parent::__construct($message, $code, $previous);
+    public function __construct() {
+        parent::__construct(Constants::VALIDATION_FAILED);
     }
 }

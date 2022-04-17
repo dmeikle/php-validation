@@ -12,32 +12,40 @@
 
 namespace Validation\Validators;
 
-use Validation\Factory\FlyweightValidatorInterface;
+use Validation\Factory\ValidatorInterface;
 
 /**
  * URLValidator - receives an IP and validates only if it holds a value
  *
- * @author	Dave Meikle
+ * @author    Dave Meikle
  *
  * @copyright 2007 - 2014
  */
-class URLValidator extends AbstractValidator implements FlyweightValidatorInterface {
+class URLValidator extends AbstractValidator implements ValidatorInterface
+{
 
     /** Creates a new instance of URLValidator */
-    public function __construct() {
-        parent::__construct("^((ht|f)tp(s?))\://([0-9a-zA-Z\-]+\.)+[a-zA-Z]{2,6}(\:[0-9]+)?(/([0-9a-zA-Z\-]+))?$^");
-    }
+    public function __construct() { }
 
     /**
      * method validate
      *
-     * @param string 		action
-     * @param ValidationItem 	object
+     * @param string        action
+     * @param ValidationItem    object
      *
      * @return boolean
      */
-    public function validate($value) {
-        return $this->checkValidChars($value);
+    public function validate($value)
+    {
+        if (!$this->checkParams($value)) {
+            return false;
+        }
+
+        if (filter_var($value, FILTER_VALIDATE_URL)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

@@ -70,10 +70,12 @@ abstract class AbstractValidator {
      */
     protected function checkValidChars($value) : bool {
     	if(!is_array($value) && strlen($value) == 0 || is_array($value) && count($value) == 0) {
+
             return true;
     	}
 
 		if(!$this->checkParams($value)) {
+
             return false;
         }
 
@@ -84,11 +86,10 @@ abstract class AbstractValidator {
                     return false;
                 }
             }
-        } else {
-            if(preg_match($this->regex,$value)) {
-                return true;
-            }
-        }			
+        }
+
+
+        return preg_match($this->regex,$value);
     }
 
     

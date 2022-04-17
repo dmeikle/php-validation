@@ -13,7 +13,7 @@
 namespace Validation\Validators;
 
 
-use Validation\Factory\FlyweightValidatorInterface;
+use Validation\Factory\ValidatorInterface;
 
 /**
  * DateValidator - receives a date and validates only if it holds a value
@@ -22,9 +22,9 @@ use Validation\Factory\FlyweightValidatorInterface;
  * 
  * @copyright 2007 - 2014
  */
-class DateValidator extends AbstractValidator implements FlyweightValidatorInterface{
+class DateValidator extends AbstractValidator implements ValidatorInterface{
     
-    /** Creates a new instance of EmailValidatorCommand */
+  
     public function __construct() {
         parent::__construct("/^-?[0-9]+(?:\.[0-9]{1,2})?$/");
     }
@@ -39,6 +39,10 @@ class DateValidator extends AbstractValidator implements FlyweightValidatorInter
      * @return boolean
      */
      public function validate($value) {
+         if(!$this->checkParams($value)) {
+             return false;
+         }
+
         //pass it if there's nothing to check
         if(strlen($value) == 0) {               
                 return true;

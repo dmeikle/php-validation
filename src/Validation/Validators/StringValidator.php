@@ -12,14 +12,14 @@
 
 namespace Validation\Validators;
 
-use Validation\Factory\FlyweightValidatorInterface;
+use Validation\Factory\ValidatorInterface;
 
 /**
  * Description of RequiredCommand
  *
  * @author davem
  */
-class StringValidator extends AbstractValidator implements FlyweightValidatorInterface {
+class StringValidator extends AbstractValidator implements ValidatorInterface {
    
     
     /** Creates a new instance of StringValidatorCommand */
@@ -36,6 +36,7 @@ class StringValidator extends AbstractValidator implements FlyweightValidatorInt
      * @return boolean
      */
     public function validate($value) {
+
         return $this->checkValidChars($value);
     }
 

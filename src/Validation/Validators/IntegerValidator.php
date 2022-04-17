@@ -12,8 +12,7 @@
 
 namespace Validation\Validators;
 
-
-use Validation\Factory\FlyweightValidatorInterface;
+use Validation\Factory\ValidatorInterface;
 
 /**
  * IntegerValidator - receives an address and validates only if it holds a value
@@ -22,11 +21,10 @@ use Validation\Factory\FlyweightValidatorInterface;
  * 
  * @copyright 2007 - 2014
  */
-class IntegerValidator extends AbstractValidator implements FlyweightValidatorInterface{
+class IntegerValidator extends AbstractValidator implements ValidatorInterface{
     
-    /** Creates a new instance of EmailValidatorCommand */
+  
     public function __construct() {
-        parent::__construct("^[0-9]$^");
     }
 
 
@@ -39,8 +37,15 @@ class IntegerValidator extends AbstractValidator implements FlyweightValidatorIn
      * @return boolean
      */
      public function validate($value) {
-        //the object contains a pass/fail flag within it...
-        return $this->checkValidChars($value);
+         if(!$this->checkParams($value)) {
+             return false;
+         }
+
+          if (filter_var($value, FILTER_VALIDATE_INT)) {
+             return true;
+         }
+
+         return false;
     }
 
 }

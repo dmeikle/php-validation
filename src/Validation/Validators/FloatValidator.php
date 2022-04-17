@@ -12,7 +12,7 @@
 
 namespace Validation\Validators;
 
-use Validation\Factory\FlyweightValidatorInterface;
+use Validation\Factory\ValidatorInterface;
 
 /**
  * FloatValidator - receives an input and validates only if it holds a value
@@ -21,7 +21,7 @@ use Validation\Factory\FlyweightValidatorInterface;
  *
  * @copyright 2007 - 2014
  */
-class FloatValidator extends AbstractValidator implements FlyweightValidatorInterface {
+class FloatValidator extends AbstractValidator implements ValidatorInterface {
 
     public function __construct() {
 

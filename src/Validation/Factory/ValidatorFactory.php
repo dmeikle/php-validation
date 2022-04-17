@@ -20,12 +20,18 @@ class ValidatorFactory
 
     private $validators = array();
 
+    /**
+     * @param $validatorName
+     * @param array $params
+     * @return mixed
+     * @throws ValidatorNotFoundException
+     */
     public function getValidator($validatorName, array $params)
     {
         if (!array_key_exists($validatorName, $this->validators)) {
             $validator = 'Validation\\Validators\\' . $validatorName . 'Validator';
             if (!class_exists($validator)) {
-                throw new ValidatorNotFoundException();
+                throw new ValidatorNotFoundException($validatorName);
             }
             $this->validators[$validatorName] = new $validator();
         }

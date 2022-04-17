@@ -13,7 +13,7 @@
 namespace Validation\Validators;
 
 
-use Validation\Factory\FlyweightValidatorInterface;
+use Validation\Factory\ValidatorInterface;
 
 /**
  * IPAddressValidator - receives an IP and validates only if it holds a value
@@ -22,11 +22,10 @@ use Validation\Factory\FlyweightValidatorInterface;
  * 
  * @copyright 2007 - 2014
  */
-class IPAddressValidator extends AbstractValidator implements FlyweightValidatorInterface{
-    
-    /** Creates a new instance of EmailValidatorCommand */
+class IPAddressValidator extends AbstractValidator implements ValidatorInterface{
+
     public function __construct() {
-        parent::__construct("/^((2[0-4]\\d|25[0-5]|[01]?\\d\\d?)\\.){3}(2[0-4]\\d|25[0-5]|[01]?\\d\\d?)$/");
+
     }
 
 
@@ -39,7 +38,11 @@ class IPAddressValidator extends AbstractValidator implements FlyweightValidator
      * @return boolean
      */
     public function validate($value) {
-        return $this->checkValidChars($value);
+        if (filter_var($value, FILTER_VALIDATE_IP)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 

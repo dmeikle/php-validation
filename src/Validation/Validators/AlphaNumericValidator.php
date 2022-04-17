@@ -13,7 +13,7 @@
 namespace Validation\Validators;
 
 
-use Validation\Factory\FlyweightValidatorInterface;
+use Validation\Factory\ValidatorInterface;
 
 /**
  * AlphaNumbericValidator - receives an alphanumeric and validates only if it holds a value
@@ -22,7 +22,7 @@ use Validation\Factory\FlyweightValidatorInterface;
  * 
  * @copyright 2007 - 2014
  */
-class AlphaNumericValidator extends AbstractValidator implements FlyweightValidatorInterface{
+class AlphaNumericValidator extends AbstractValidator implements ValidatorInterface{
     
     /** Creates a new instance of AlphaNumbericValidator */
     public function __construct() {

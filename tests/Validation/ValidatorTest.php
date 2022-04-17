@@ -17,17 +17,17 @@ use tests\BaseTest;
 class ValidatorTest extends BaseTest {
    
     public function testCreateValidator() {
-        $loader = new YamlConfiguration();        
+        $loader = new YamlConfiguration();
         $loader->loadConfig(__SITE_PATH . '/validation-config.yml');
-        
-        
-        $validator = new Validator($loader, $this->getLogger());
-        
+
+
+        $validator = new Validator($loader, new ValidatorFactory());
+
         $result = $validator->validateRequest($this->getPostedParams(), true);
-      
+
         $this->assertTrue(is_array($result));
         $this->assertTrue(array_key_exists('firstname',$result));
-        $this->assertEquals('VALIDATION_REQUIRED_FIELD', $result['firstname']);        
+        $this->assertEquals('VALIDATION_REQUIRED_FIELD', $result['firstname']);
     }
 
     public function testAddressValidator() : void {

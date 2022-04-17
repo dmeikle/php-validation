@@ -13,7 +13,7 @@
 namespace Validation\Validators;
 
 
-use Validation\Factory\FlyweightValidatorInterface;
+use Validation\Factory\ValidatorInterface;
 
 /**
  * AddressValidator - receives an address and validates only if it holds a value
@@ -22,11 +22,10 @@ use Validation\Factory\FlyweightValidatorInterface;
  * 
  * @copyright 2007 - 2014
  */
-class AddressValidator extends AbstractValidator implements FlyweightValidatorInterface{
-    
-    /** Creates a new instance of EmailValidatorCommand */
+class AddressValidator extends AbstractValidator implements ValidatorInterface{
+
     public function __construct() {
-        parent::__construct("^[A-Za-z0-9\\s\\-\\.]$^");
+        parent::__construct("/^[A-Za-z0-9 \-.#]+$/");
     }
 
 

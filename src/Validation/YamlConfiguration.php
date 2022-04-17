@@ -14,23 +14,38 @@ namespace Validation;
 
 use Validation\ConfigLoaderInterface;
 use Symfony\Component\Yaml\Yaml;
+use Validation\Exceptions\ConfigurationNotFoundException;
 use Validation\Exceptions\ConfigurationNotLoadedException;
 
 class YamlConfiguration implements ConfigLoaderInterface {
 
     private $config = null;
 
+    /**
+     * @return null
+     */
     public function getConfig() {
         return $this->config;
     }
 
+    /**
+     * @param $filepath
+     * @return void
+     * @throws ConfigurationNotFoundException
+     */
     public function loadConfig($filepath) {
         if (!file_exists($filepath)) {
-            return false;
+            throw new ConfigurationNotFoundException($filepath);
         }
+
         $this->config = Yaml::parse(file_get_contents($filepath));
     }
 
+    /**
+     * @param $key
+     * @return mixed|void
+     * @throws ConfigurationNotLoadedException
+     */
     public function getNode($key) {
         if (is_null($this->config)) {
             throw new ConfigurationNotLoadedException();

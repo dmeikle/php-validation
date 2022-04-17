@@ -12,6 +12,8 @@
 
 namespace Validation\Exceptions;
 
+use Validation\Config\Constants;
+
 /**
  * ConfigurationNotLoadedException
  *
@@ -20,7 +22,7 @@ namespace Validation\Exceptions;
 class ConfigurationNotLoadedException extends \Exception {
 
     public function __construct() {
-        parent::__construct('Validation configuration array not found', 804);
+        parent::__construct(Constants::CONFIGURATION_NOT_LOADED, 804);
     }
 
 }

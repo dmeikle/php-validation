@@ -12,11 +12,17 @@
 
 namespace Validation\Exceptions;
 
+use JetBrains\PhpStorm\Internal\LanguageLevelTypeAware;
+use Validation\Config\Constants;
+
 /**
  * Description of ElementNotValidatedException
  *
  * @author davem
  */
 class ElementNotValidatedException extends \Exception{
-   
+   public function __construct()
+   {
+       parent::__construct(Constants::ELEMENT_NOT_VALIDATED_EXCEPTION);
+   }
 }

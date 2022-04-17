@@ -13,34 +13,45 @@
 namespace Validation\Validators;
 
 
-use Validation\Factory\FlyweightValidatorInterface;
+use Validation\Factory\ValidatorInterface;
 
 /**
  * EmailValidator - receives an email and validates only if it holds a value
- * 
- * @author	Dave Meikle
- * 
+ *
+ * @author    Dave Meikle
+ *
  * @copyright 2007 - 2014
  */
-class EmailValidator extends AbstractValidator implements FlyweightValidatorInterface{
-    
-    /** Creates a new instance of EmailValidatorCommand */
-    public function __construct() {
-        parent::__construct("/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/");
+class EmailValidator extends AbstractValidator implements ValidatorInterface
+{
+
+  
+    public function __construct()
+    {
     }
 
 
     /**
      * validate
-     * 
-     * @param string 	action
-     * @param ValidationItem 	object
-     * 
+     *
+     * @param string    action
+     * @param ValidationItem    object
+     *
      * @return boolean
      */
-     public function validate($value) {
-        //the object contains a pass/fail flag within it...
-        return $this->checkValidChars($value);
+    public function validate($value)
+    {
+
+        if (!$this->checkParams($value)) {
+            return false;
+        }
+
+        //cannot inline this filter - I tried
+        if (filter_var($value, FILTER_VALIDATE_EMAIL)) {
+            return true;
+        }
+
+        return false;
     }
 
 }
